@@ -1,0 +1,16 @@
+
+# Libraries
+from fhirclient import client
+
+# Settings 
+settings = {
+	'app_id': 'Rounding_Tool',
+	'api_base': 'https://fhir-open-api-dstu2.smarthealthit.org'
+	}
+	
+smart = client.FHIRClient(settings=settings)
+
+import fhirclient.modules.patient as p
+patient = p.Patient.read('hca-pat-1', smart.server)
+patient.birthDate.isostring
+smart.human_name(patient.name[0])
